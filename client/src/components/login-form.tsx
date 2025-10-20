@@ -11,7 +11,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 
-interface LoginFormProps extends React.ComponentPropsWithoutRef<"div"> {
+interface LoginFormProps {
+  className?: string;
   onSubmit: (formData: { email: string; password: string }) => void;
   onToggleMode: () => void;
   isLoading: boolean;
@@ -24,7 +25,6 @@ export function LoginForm({
   onToggleMode,
   isLoading,
   error,
-  ...props
 }: LoginFormProps) {
   const [formData, setFormData] = useState({
     email: "",
@@ -45,7 +45,7 @@ export function LoginForm({
   };
 
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
+    <div className={cn("flex flex-col gap-6", className)}>
       <Card>
         <CardHeader>
           <CardTitle className="text-2xl">Login</CardTitle>
