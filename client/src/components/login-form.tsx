@@ -9,9 +9,10 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useState } from "react";
 
 interface LoginFormProps extends React.ComponentPropsWithoutRef<"div"> {
-  onSubmit: (e: React.FormEvent) => void;
+  onSubmit: (formData: { email: string; password: string }) => void;
   onToggleMode: () => void;
   isLoading: boolean;
   error?: string;
@@ -25,6 +26,24 @@ export function LoginForm({
   error,
   ...props
 }: LoginFormProps) {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onSubmit(formData);
+  };
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -35,7 +54,7 @@ export function LoginForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={onSubmit}>
+          <form onSubmit={handleSubmit}>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
@@ -44,6 +63,8 @@ export function LoginForm({
                   name="email"
                   type="email"
                   placeholder="m@example.com"
+                  value={formData.email}
+                  onChange={handleInputChange}
                   required
                 />
               </div>
@@ -57,7 +78,14 @@ export function LoginForm({
                     Forgot your password?
                   </a>
                 </div>
-                <Input id="password" name="password" type="password" required />
+                <Input
+                  id="password"
+                  name="password"
+                  type="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  required
+                />
               </div>
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading ? "Please wait..." : "Login"}
