@@ -33,21 +33,17 @@ export default function LoginPage() {
     }
   }, [user, navigate]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleLoginSubmit = (formData: { email: string; password: string }) => {
+    loginMutation.mutate(formData);
+  };
 
-    if (isLogin) {
-      loginMutation.mutate({
-        email: formData.email,
-        password: formData.password,
-      });
-    } else {
-      registerMutation.mutate({
-        username: formData.username,
-        email: formData.email,
-        password: formData.password,
-      });
-    }
+  const handleRegisterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    registerMutation.mutate({
+      username: formData.username,
+      email: formData.email,
+      password: formData.password,
+    });
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,7 +63,7 @@ export default function LoginPage() {
       >
         {isLogin ? (
           <LoginForm
-            onSubmit={handleSubmit}
+            onSubmit={handleLoginSubmit}
             onToggleMode={() => setIsLogin(false)}
             isLoading={loginMutation.isPending}
             error={(loginMutation.error as any)?.response?.data?.message}
@@ -83,7 +79,7 @@ export default function LoginPage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleRegisterSubmit} className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="username">Username</Label>
                   <Input
