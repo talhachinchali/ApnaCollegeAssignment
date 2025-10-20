@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -70,7 +70,7 @@ export default function LoginPage() {
             onSubmit={handleSubmit}
             onToggleMode={() => setIsLogin(false)}
             isLoading={loginMutation.isPending}
-            error={loginMutation.error?.response?.data?.message}
+            error={(loginMutation.error as any)?.response?.data?.message}
           />
         ) : (
           <Card>
@@ -146,7 +146,7 @@ export default function LoginPage() {
               {registerMutation.error && (
                 <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-md">
                   <p className="text-sm text-red-600">
-                    {registerMutation.error?.response?.data?.message ||
+                    {(registerMutation.error as any)?.response?.data?.message ||
                       "An error occurred. Please try again."}
                   </p>
                 </div>

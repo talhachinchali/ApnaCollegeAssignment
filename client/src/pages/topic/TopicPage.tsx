@@ -1,11 +1,8 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Link, useParams, useNavigate } from "@tanstack/react-router";
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -19,9 +16,7 @@ import { useCurrentUser } from "@/hooks/useAuth";
 import { motion } from "framer-motion";
 import {
   ArrowLeft,
-  ExternalLink,
   Play,
-  BookOpen,
   Code,
   FileText,
 } from "lucide-react";

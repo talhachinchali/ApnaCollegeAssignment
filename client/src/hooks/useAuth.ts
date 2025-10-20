@@ -1,10 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   authApi,
-  User,
-  LoginCredentials,
-  RegisterCredentials,
-  AuthResponse,
+  // User,
+  // LoginCredentials,
+  // RegisterCredentials,
+  // AuthResponse,
 } from "../api/auth";
 
 // Auth hooks

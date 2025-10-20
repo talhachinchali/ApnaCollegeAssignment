@@ -2,10 +2,10 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   topicsApi,
   progressApi,
-  Topic,
-  Problem,
-  Progress,
-  ProgressStats,
+  // Topic,
+  // Problem,
+  // Progress,
+  // ProgressStats,
 } from "../api";
 
 // Topics hooks

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import {
   Card,
@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { useTopics, useProgressStats } from "@/hooks/useTopics";
 import { useCurrentUser, useLogout } from "@/hooks/useAuth";
 import { motion } from "framer-motion";
-import { BookOpen, CheckCircle, Clock, Trophy, LogOut } from "lucide-react";
+import { BookOpen, CheckCircle, Trophy, LogOut } from "lucide-react";
 
 export default function DashboardPage() {
   const { data: user, isLoading: userLoading } = useCurrentUser();
